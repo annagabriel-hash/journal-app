@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Creating a category", type: :system, js: true do
+RSpec.describe "CreateCategories", type: :system, js: true do
   context 'valid inputs' do
     it 'saves and displays new category' do
       visit new_category_path
