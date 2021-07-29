@@ -8,6 +8,10 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
   
+  def edit
+    @category = Category.find(params[:id])
+  end
+
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -17,6 +21,14 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to @category, notice: 'Category was updated successfully'
+    else
+      render :edit
+    end
+  end
   private
 
   def category_params
