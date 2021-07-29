@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Creating a category", type: :system, js: true do
-  describe 'valid inputs' do
+  context 'valid inputs' do
     it 'saves and displays new category' do
       visit new_category_path
       # Fill in form
@@ -20,7 +20,20 @@ RSpec.describe "Creating a category", type: :system, js: true do
       expect(Category.last.name).to eq('sports')
     end
   end
-  scenario 'invalid inputs' do
-    
+  context 'invalid inputs' do
+    it 'renders new view and displays error' do
+      visit new_category_path
+      # Fill in form
+      expect do
+        within 'form' do
+          click_on 'Create Category'
+        end
+
+        # Page redirected to show view
+        expect(page).to have_content("Name can't be blank")
+
+      end.to_not change(Category, :count)
+
+    end
   end
 end
