@@ -7,6 +7,8 @@ RSpec.describe "EditCategories", type: :system, js: true do
     it 'displays and updates category details' do
       visit edit_category_path(category)
       expect do
+        # Form should be prefilled
+        expect(find_field('Name').value).to eq 'sports'
         # Fill in form
         within 'form' do
           fill_in 'Name', with: 'Chores'
