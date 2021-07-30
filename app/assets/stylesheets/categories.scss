@@ -1,0 +1,12 @@
+/* =====================
+    SITE SECTION
+  ====================== 
+*/
+#categories-list {
+  th {
+    border-bottom: none;
+    &:last-child {
+      width: 15%;
+    }
+  }
+}
