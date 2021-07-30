@@ -1,9 +1,9 @@
 <%= render 'shared/errors' %>
 <%= form_with model: @category, local: true do |form| %>
-<div>
-  <%= form.label :name  %>  
-  <%= form.text_field :name, placeholder: 'Enter category name' %>
-</div>
-<%= form.submit %>
+  <div class='mb-3'>
+    <%= form.label :name, class: 'form-label' %>  
+    <%= form.text_field :name, class: 'form-control', placeholder: 'Enter category name' %>
+  </div>
+  <%= form.submit class: 'btn btn-primary col-md-4 me-3' %>
 
 <% end %>

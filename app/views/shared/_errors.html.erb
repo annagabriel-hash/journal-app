@@ -3,7 +3,7 @@
 	<h2 class="alert-heading">Uh-oh! Something went wrong</h2>
   <p>The following errors prevented the <%= @category.class.name.downcase %> from being saved:</p>
   <hr>
-	<ul>
+	<ul class='ms-2'>
     <% @category.errors.full_messages.each do |msg| %>
 		<li><%= msg %></li>
 		<% end %>
