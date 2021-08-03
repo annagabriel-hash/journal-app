@@ -23,10 +23,10 @@ RSpec.describe "CreatingNewUsers", type: :system do
 
         # Test data
       end.to change(User, :count).by(1)
-      user = User.find_by(username: 'johndoe')
+      user = User.where(username: 'johndoe')
       expect(user).to exist
-      expect(user.firstname).to eq('John')
-      expect(user.lastname).to eq('Doe')
+      expect(user.first.firstname).to eq('John')
+      expect(user.first.lastname).to eq('Doe')
 
       # Page redirected to show view
       expect(page).to have_current_path(user_path(User.last))
@@ -49,7 +49,7 @@ RSpec.describe "CreatingNewUsers", type: :system do
 
         expect(page).to have_content("Password confirmation doesn't match Password")
       end.to_not change(User, :count)
-      expect(User.find_by(username: 'johndoe')).to raise_error(ActiveRecord::RecordNotFound)
+      expect(User.where(username: 'johndoe')).to raise_error(ActiveRecord::RecordNotFound)
 
       # Page should render signup page
       expect(page).to have_content('Sign Up')
