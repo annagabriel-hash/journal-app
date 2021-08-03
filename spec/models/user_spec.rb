@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {User.new(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password')}
+  let(:user) {User.new(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
 
   it 'is valid with valid attributes' do
     expect(user).to be_valid
@@ -27,4 +27,10 @@ RSpec.describe User, type: :model do
     user.save
     expect(duplicate_user).to_not be_valid
   end
+
+  it 'has a secure password' do
+    user.save
+    expect(user.password_digest).to_not eq('password')
+  end
+
 end

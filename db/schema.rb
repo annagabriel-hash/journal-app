@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_08_04_122135) do
+=======
+ActiveRecord::Schema.define(version: 2021_08_03_105121) do
+>>>>>>> 971baee (Added user secure password)
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_122135) do
     t.string "username"
     t.string "firstname"
     t.string "lastname"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
