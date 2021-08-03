@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  let(:category) { Category.new(name: 'Coding') }
+  let(:user) {User.create(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  let(:category) { Category.new(name: 'Coding', user: user) }
 
   it "is valid with valid attributes" do
     expect(category).to be_valid
@@ -24,4 +25,5 @@ RSpec.describe Category, type: :model do
     category.save
     expect(category.reload.name).to eq mixed_case_name.downcase
   end
+
 end
