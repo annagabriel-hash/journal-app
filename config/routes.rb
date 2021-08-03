@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root 'categories#index'
   resources :categories
   resources :tasks
+  get 'signup', to: 'users#new'
+  resources :users, except: :new
 end
