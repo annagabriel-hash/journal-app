@@ -33,4 +33,11 @@ RSpec.describe User, type: :model do
     expect(user.password_digest).to_not eq('password')
   end
 
+  context 'is deleted' do
+    it 'associated categories are deleted' do
+      user.save
+      user.categories.create(name: 'coding')
+      expect { user.destroy }.to change(Category, :count).by(-1)
+    end
+  end
 end
