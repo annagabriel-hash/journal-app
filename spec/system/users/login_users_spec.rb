@@ -38,7 +38,7 @@ RSpec.describe "LoginUsers", type: :system do
       fill_in 'Password', with: 'newpassword'
       click_on 'Log In'
       # Test page
-      expect(page).to have_content('Invalid username/password')
+      expect(page).to have_content('Invalid username or password')
     end
   end
 end
