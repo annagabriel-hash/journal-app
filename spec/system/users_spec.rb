@@ -49,7 +49,7 @@ RSpec.describe "CreatingNewUsers", type: :system do
 
         expect(page).to have_content("Password confirmation doesn't match Password")
       end.to_not change(User, :count)
-      expect(User.where(username: 'johndoe')).to raise_error(ActiveRecord::RecordNotFound)
+      expect{ User.find_by!(username: 'johndoe') }.to raise_error(ActiveRecord::RecordNotFound)
 
       # Page should render signup page
       expect(page).to have_content('Sign Up')
