@@ -19,4 +19,26 @@ RSpec.describe "LoginUsers", type: :system do
       expect(page).to have_content("Welcome #{user.firstname.capitalize}!")
     end
   end
+  context 'with inexisting username' do
+    it 'displays error message' do
+      visit login_path
+      # Fill in login details
+      fill_in 'Username', with: 'janedoe'
+      fill_in 'Password', with: 'password'
+      click_on 'Log In'
+      # Test page
+      expect(page).to have_content('Invalid username or password')
+    end
+  end
+  context 'with incorrect password' do
+    it 'displays error message' do
+      visit login_path
+      # Fill in login details
+      fill_in 'Username', with: user.username
+      fill_in 'Password', with: 'newpassword'
+      click_on 'Log In'
+      # Test page
+      expect(page).to have_content('Invalid username/password')
+    end
+  end
 end
