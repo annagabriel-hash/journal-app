@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Login successful'
       redirect_to user_path(user)
     else
+      flash[:alert] = 'Invalid username or password'
       render :new
     end
   end
