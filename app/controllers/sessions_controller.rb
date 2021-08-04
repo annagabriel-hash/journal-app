@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       flash[:notice] = 'Login successful'
       redirect_to user_path(user)
     else
+      render :new
     end
   end
 end
