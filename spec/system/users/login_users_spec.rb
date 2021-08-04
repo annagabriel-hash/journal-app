@@ -13,8 +13,6 @@ RSpec.describe "LoginUsers", type: :system do
       fill_in 'Username', with: user.username
       fill_in 'Password', with: 'password'
       click_on 'Log In'
-      # Test data
-      expect(session[:user_id]).to eq(user.id)
       # Test page
       expect(page).to have_current_path(user_path(user))
       expect(page).to have_content('Login successful')
