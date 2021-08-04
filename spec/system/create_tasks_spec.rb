@@ -8,17 +8,17 @@ RSpec.describe "CreateTasks", type: :system do
   it 'saves and display task' do
     visit '/tasks/new'
     fill_in 'Todo', with: 'sample task'
-    fill_in 'Due', with: 'datetime'
+    fill_in 'Due', with: '2021-08-05 21:58:00 UTC'
     fill_in 'Notes', with: 'sample notes'
     click_on 'Submit task'
 
     expect(page).to have_content('sample task')
-    expect(page).to have_content('datetime')
+    expect(page).to have_content('2021-08-05 21:58:00 UTC')
     expect(page).to have_content('sample notes')
 
     task = Task.order("id").last
-    expect(task.text).to eq('sample task')
-    expect(task.due).to eq('datetime')
+    expect(task.todo).to eq('sample task')
+    expect(task.due).to eq('2021-08-05 21:58:00 UTC')
     expect(task.notes).to eq('sample notes')
 
 
