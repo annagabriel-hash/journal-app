@@ -1,3 +1,4 @@
+<%= render 'shared/errors', obj: @user %>
 <%= form_with model: @user do |f| %>
   <%= f.label :firstname, 'First Name' %>
   <%= f.text_field :firstname %>
@@ -6,8 +7,8 @@
   <%= f.label :username, 'Username' %>
   <%= f.text_field :username %>
   <%= f.label :password, 'Password' %>
-  <%= f.text_field :password %>
+  <%= f.password_field :password %>
   <%= f.label :password_confirmation, 'Confirm Password' %>
-  <%= f.text_field :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
   <%= f.submit 'Create Account' %>
 <% end %>

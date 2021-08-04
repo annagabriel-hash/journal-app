@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Account was created successfully'
       redirect_to @user
+    else
+      render :new
     end
   end
 
@@ -17,6 +19,6 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :username, :password)
+    params.require(:user).permit(:firstname, :lastname, :username, :password, :password_confirmation)
   end
 end
