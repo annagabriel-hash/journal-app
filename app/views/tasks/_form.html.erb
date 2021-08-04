@@ -1,0 +1,19 @@
+<%= form_with model: @task do |form| %>
+  <div class='mb-3'>
+    <%= form.label :todo, class: 'form-label' %>  
+    <%= form.text_field :todo, class: 'form-control' %>
+  </div>
+
+  <div class='mb-3'>
+    <%= form.label :due, class: 'form-label' %>
+    <%= form.datetime_field :due, min: Date.today %>
+  </div>
+
+  <div class='mb-3'>
+    <%= form.label :notes, class: 'form-label' %>  
+    <%= form.text_field :notes, class: 'form-control' %>
+  </div>
+
+  <%= form.submit "Submit task", class: 'btn btn-primary col-md-4 me-3' %>
+
+<% end %>
