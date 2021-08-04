@@ -9,7 +9,7 @@ RSpec.describe "CreateTasks", type: :system do
     visit '/tasks/new'
     fill_in 'Todo', with: 'sample task'
     fill_in 'Due', with: '2021-08-05 21:58:00 UTC'
-    fill_in 'Notes', with: 'sample notes'
+  fill_in 'Notes', with: 'sample notes'
     click_on 'Submit task'
 
     expect(page).to have_content('sample task')
