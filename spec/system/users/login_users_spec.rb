@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "LoginUsers", type: :system do
+  let!(:user) {User.create(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
   before do
     driven_by(:rack_test)
-    user = User.create(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password', password_confirmation: 'password')
   end
 
   context 'with valid inputs' do
