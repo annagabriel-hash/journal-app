@@ -12,6 +12,13 @@ class TasksController < ApplicationController
     end
 
     def update
+        @task = Task.find(params[:id])
+        @task.update! (task_params)
+        redirect_to @task
+    end
+
+    def show
+        @task = Task.find(params[:id])
     end
 
     private
