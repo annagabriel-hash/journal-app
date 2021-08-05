@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root 'categories#index'
   resources :categories
   resources :tasks
+  get 'signup', to: 'users#new'
+  resources :users, except: :new
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
 end
