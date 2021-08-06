@@ -10,7 +10,11 @@ RSpec.describe "ViewCategories", type: :system, js: true do
     fill_in 'Password', with: user.password
     click_on 'Log In'
   end
-  
+
+  before do
+    driven_by :selenium, using: :chrome
+  end
+
   describe 'index view' do
     it 'display all categories' do
       visit categories_path
