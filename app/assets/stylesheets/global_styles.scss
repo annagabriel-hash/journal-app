@@ -1,0 +1,13 @@
+#loginPage {
+  .img-container {
+    img {
+      max-height: 80vmin;
+      max-width: 100vmin;
+      z-index: 10;
+      position: relative;
+      left: 50%;
+      top: 20%;
+      transform: translateX(-50%);
+    } 
+  }
+}
