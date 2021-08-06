@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "ViewCategories", type: :system, js: true do
-  let!(:category) { Category.create(name: 'Travel') }
+  let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  let!(:category) { Category.create(name: 'Travel', user: user) }
 
   describe 'index view' do
     it 'display all categories' do
