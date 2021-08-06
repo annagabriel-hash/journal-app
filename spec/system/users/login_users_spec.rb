@@ -8,7 +8,8 @@ RSpec.describe "LoginUsers", type: :system do
 
   context 'with valid inputs' do
     it 'stores user details and display user profile' do
-      visit login_path
+      visit root_path
+      expect(page).to have_link('Sign up')
       # Fill in login details
       fill_in 'Username', with: user.username
       fill_in 'Password', with: 'password'

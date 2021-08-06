@@ -4,7 +4,14 @@ RSpec.describe "CreatingNewUsers", type: :system do
   before do
     driven_by(:rack_test)
   end
-
+  context 'clicking sign up link in homepage' do
+    it 'redirects to signup page' do
+      visit root_path
+      click_on 'Sign up'
+      expect(page).to have_current_path(signup_path)
+      expect(page).to have_content('Sign up')
+    end
+  end
   context 'with valid inputs' do
     it 'saves and displays the new user' do
       visit signup_path
