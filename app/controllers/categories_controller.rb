@@ -1,9 +1,10 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  # before_action :set_category, only: %i[show edit update destroy]
+  before_action :get_user
   before_action :require_login
 
   def index
-    @categories = Category.all
+    @categories = @user.categories
   end
 
   def show
@@ -41,6 +42,10 @@ class CategoriesController < ApplicationController
 
   private
 
+  def get_user 
+    @user = User.find(params[:user_id])
+  end
+  
   def set_category
     @category = Category.find(params[:id])
   end
