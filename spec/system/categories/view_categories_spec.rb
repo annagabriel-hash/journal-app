@@ -1,7 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe "ViewCategories", type: :system, js: true do
-  let!(:category) { Category.create(name: 'Travel') }
+  let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  let!(:category) { Category.create(name: 'Travel', user: user) }
+
+  def login(user)
+    visit root_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_on 'Log In'
+  end
+
+  before do
+    driven_by :selenium, using: :chrome
+    login(user)
+  end
 
   describe 'index view' do
     it 'display all categories' do

@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'CategoriesController', type: :request do
-  let(:category) { Category.new(name: 'sports') }
+  let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  let(:category) { Category.new(name: 'sports', user: user) }
 
+  def login(user)
+    post login_path, params: { session: { username: user.username, password: 'password'} }
+  end
+
+  before do
+    login(user)
+  end
   describe "GET /index" do
     it 'returns index page' do
       get categories_path
@@ -36,7 +44,7 @@ RSpec.describe 'CategoriesController', type: :request do
   describe "POST /create" do
     it 'creates new category' do
       expect do
-        post categories_path, params: { category: { name: category.name} }
+        post categories_path, params: { category: { name: category.name, user: user} }
         expect(response).to redirect_to(assigns(:category))
         follow_redirect!
         expect(response).to render_template(:show)
@@ -66,7 +74,7 @@ RSpec.describe 'CategoriesController', type: :request do
     it 'renders new for invalid inputs' do
       category.save
       expect do
-        patch category_path(category), params: { category: { name: ' ' } }
+        patch category_path(category), params: { category: { name: ' ', user: user } }
         expect(response).to render_template(:edit)
       end.to_not change(Category, :count)
       # No changes to the data
