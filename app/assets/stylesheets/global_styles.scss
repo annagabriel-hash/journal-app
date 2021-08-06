@@ -1,4 +1,25 @@
-#loginPage {
+/*********************************** 
+  || Table of Contents          ||
+  ||  A. Global Styles          ||      
+  ||  B. Content                ||   
+  ||  C. Color Styles           ||    
+  ||  D. Components             ||  
+  ||  E. Layout/Utilities       ||  
+  ||  F. Site Sections          ||  
+***********************************/
+/* =====================
+    E. LAYOUT/UTILITIES
+  ====================== 
+*/
+.pb-15 {
+  padding-bottom: 15% !important;
+}
+/* =====================
+    F. SITE SECTIONS
+  ====================== 
+*/
+
+#homepage {
   .img-container {
     img {
       max-height: 80vmin;
@@ -9,5 +30,8 @@
       top: 20%;
       transform: translateX(-50%);
     } 
+  }
+  div {
+    z-index: 2;
   }
 }

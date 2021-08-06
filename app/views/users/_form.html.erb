@@ -1,14 +1,14 @@
 <%= render 'shared/errors', obj: @user %>
-<%= form_with model: @user do |f| %>
-  <%= f.label :firstname, 'First Name' %>
-  <%= f.text_field :firstname %>
-  <%= f.label :lastname, 'Last Name' %>
-  <%= f.text_field :lastname %>
-  <%= f.label :username, 'Username' %>
-  <%= f.text_field :username %>
-  <%= f.label :password, 'Password' %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation, 'Confirm Password' %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit 'Create Account' %>
+<%= form_with model: @user, class: 'my-3' do |f| %>
+  <%= f.label :firstname, 'First Name', class: 'form-label' %>
+  <%= f.text_field :firstname, required: true, class: 'form-control' %>
+  <%= f.label :lastname, 'Last Name', class: 'form-label mt-3' %>
+  <%= f.text_field :lastname, class: 'form-control' %>
+  <%= f.label :username, 'Username', class: 'form-label mt-3' %>
+  <%= f.text_field :username, required: true, class: 'form-control' %>
+  <%= f.label :password, 'Password', class: 'form-label mt-3' %>
+  <%= f.password_field :password, required: true, class: 'form-control' %>
+  <%= f.label :password_confirmation, 'Confirm Password', class: 'form-label mt-3' %>
+  <%= f.password_field :password_confirmation, required: true, class: 'form-control' %>
+  <%= f.submit 'Create Account', class: 'btn btn-primary mt-4 col-12' %>
 <% end %>

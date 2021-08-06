@@ -1,4 +1,4 @@
-<main class='container-fluid row p-0 m-0' id='loginPage'>
+<main class='container-fluid row p-0 m-0' id='homepage'>
   <div class="col-7 img-container d-none d-md-block">
     <%= image_tag 'todolist', class: 'img-fluid' %>
   </div>
@@ -11,7 +11,7 @@
       <%= f.password_field :password, class: 'form-control' %>
       <%= f.submit 'Log In', class: 'btn btn-primary mt-4 col-12' %>
     <% end %>
-    <p>Don't have an account? <a href="#" class='link-primary'>Sign up</a></p>
+    <p>Don't have an account? <%= link_to 'Sign up', signup_path, class: 'link-primary' %></p>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class='position-absolute bottom-0 p-0'>
     <path fill="#023047" fill-opacity="1" d="M0,64L48,96C96,128,192,192,288,229.3C384,267,480,277,576,250.7C672,224,768,160,864,160C960,160,1056,224,1152,256C1248,288,1344,288,1392,288L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
