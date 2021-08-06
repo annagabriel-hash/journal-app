@@ -1,16 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "EditTasks", type: :system do
-  before do
-    driven_by(:rack_test)
+  let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  let(:task) { Task.create(todo:'sample todo', due:'2021-08-05 21:58:00 UTC', notes: 'sample notes' ) }
+
+  def login(user)
+    visit root_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_on 'Log In'
   end
 
-  before :all do
-    @task = Task.create(todo:'sample todo', due:'2021-08-05 21:58:00 UTC', notes: 'sample notes' )
+  before do
+    driven_by(:rack_test)
+    login(user)
+    visit edit_user_task_path(user, task)
   end
 
   it 'edits task' do
-    visit "tasks/#{@task.id}/edit"
     fill_in 'Todo', with: 'Sample task. Edited!'
     fill_in 'Due', with: '2021-09-05 21:58:00 UTC'
     fill_in 'Notes', with: 'Sample notes. Edited!'
