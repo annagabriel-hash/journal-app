@@ -28,7 +28,7 @@ RSpec.describe 'CategoriesController', type: :request do
   end
   describe "GET /new" do
     it 'returns new page' do
-      get new_user_category_path
+      get new_user_category_path(user)
       expect(response).to render_template(:new)
       expect(response).to have_http_status(:success)
     end
