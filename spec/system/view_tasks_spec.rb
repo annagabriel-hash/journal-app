@@ -1,24 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe "ViewTasks", type: :system do
+  let(:user) { User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password') }
+  let(:date) { DateTime.new(2021, 8, 21, 18, 24, 0) }
+  let!(:task) { Task.create(todo:'sample todo', due: date, notes: 'sample notes', user: user ) }
+  
+  def login(user)
+    visit root_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_on 'Log In'
+  end
+
   before do
     driven_by(:rack_test)
+    login(user)
+    visit user_tasks_path(user)
   end
-
-  before :all do
-    Task.destroy_all
-  end
-
-  let(:date) { DateTime.new(2021, 8, 4, 18, 24, 0)}
-  let!(:task) {Task.create(todo:'sample todo', due: date, notes: 'sample notes' )}
 
 describe 'index view' do
   it 'display all tasks' do
-
-    visit tasks_path
-    expect(Task.count).to eq(1)
-    # visit tasks_path
-
+    user_task = user.tasks
+    expect(user_task.count).to eq(1)
     within 'tbody' do
     expect(page).to have_selector('tr', count: 1)
     end
