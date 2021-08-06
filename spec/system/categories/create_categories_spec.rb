@@ -1,6 +1,14 @@
 require 'rails_helper'
+require './spec/support/helpers/authentication'
+RSpec.configure do |c|
+  c.include Helpers::Authentication
+end
 
 RSpec.describe "CreateCategories", type: :system, js: true do
+  before do
+    @user = User.create(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password', password_confirmation: 'password')
+    sign_in_as(@user)
+  end
   context 'valid inputs' do
     it 'saves and displays new category' do
       visit new_category_path
