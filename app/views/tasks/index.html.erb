@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @task.each do |task| %>
+      <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to 'Show', task, class: 'btn btn-primary btn-sm'%></td>
         <td><%= link_to 'Edit', edit_task_path(task), class: 'btn btn-primary btn-sm' %></td>
