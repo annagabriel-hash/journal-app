@@ -49,7 +49,7 @@ describe 'index view' do
 
   it 'destroys task when the delete button is clicked' do
     expect{ click_link('Delete') }.to change(Task, :count).by(-1)
-  expect(page).to have_current_path(user_tasks_path)
+  expect(page).to have_current_path(user_tasks_path(user))
   expect(page).to have_content('Task was deleted successfully')
 end
 
