@@ -13,6 +13,7 @@ RSpec.describe "ViewCategories", type: :system, js: true do
 
   before do
     driven_by :selenium, using: :chrome
+    login(user)
   end
 
   describe 'index view' do
