@@ -13,11 +13,11 @@ RSpec.describe "EditCategories", type: :system, js: true do
 
   before do
     driven_by :selenium, using: :chrome
+    login(user)
   end
 
   context 'with valid inputs' do
     it 'displays and updates category details' do
-      login(user)
       visit edit_category_path(category)
       expect do
         # Form should be prefilled
@@ -39,7 +39,6 @@ RSpec.describe "EditCategories", type: :system, js: true do
   end
   context ' with invalid inputs' do
     it 'displays error message and renders edit view' do
-      login(user)
       visit edit_category_path(category)
       expect do
         # Fill in form
