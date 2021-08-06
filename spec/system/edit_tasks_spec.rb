@@ -23,9 +23,12 @@ RSpec.describe "EditTasks", type: :system do
     fill_in 'Due', with: date.strftime("%FT%R")
     fill_in 'Notes', with: 'Sample notes. Edited!'
     click_on 'Submit task'
-
+    # Test page
     expect(page).to have_content("Sample task. Edited!")
     expect(page).to have_content(date.strftime("%F %T UTC"))
     expect(page).to have_content("Sample notes. Edited")
+
+    # Test data
+    expect(user.tasks.where(todo: 'Sample task. Edited!')).to exist
   end
 end
