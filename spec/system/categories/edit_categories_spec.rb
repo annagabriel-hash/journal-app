@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "EditCategories", type: :system, js: true do
-  let(:category) { Category.create(name: 'Sports') }
   let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  let(:category) { Category.create(name: 'Sports', user: user) }
   
   def login(user)
     visit root_path
