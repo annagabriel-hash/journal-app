@@ -13,7 +13,7 @@ RSpec.describe 'CategoriesController', type: :request do
   end
   describe "GET /index" do
     it 'returns index page' do
-      get user_categories_path
+      get user_categories_path(user)
       expect(response).to render_template(:index)
       expect(response).to have_http_status(:success)
     end
