@@ -14,17 +14,16 @@ RSpec.describe "ViewCategories", type: :system, js: true do
   before do
     driven_by :selenium, using: :chrome
     login(user)
+    visit user_categories_path(user)
   end
 
   describe 'index view' do
     it 'display all categories' do
-      visit user_categories_path(user)
       within 'tbody' do
         expect(page).to have_selector('tr', count: 1)
       end
     end
     it "loads the edit view when the 'Edit' button is clicked" do
-      visit user_categories_path(user)
       within 'tbody' do
         find_link('Edit').click
       end 
@@ -32,7 +31,6 @@ RSpec.describe "ViewCategories", type: :system, js: true do
       expect(find_field('Name').value).to eq category.name
     end
     it "loads the show view when the 'Show' button is clicked" do
-      visit user_categories_path(user)
       within 'tbody' do
         find_link('Show').click
       end
@@ -40,7 +38,6 @@ RSpec.describe "ViewCategories", type: :system, js: true do
       expect(page).to have_content(category.name.capitalize)
     end
     it "destroys category when the 'delete' button is clicked" do
-      visit user_categories_path(user)
       expect do
         accept_alert 'Are you sure?' do
           within 'tbody' do

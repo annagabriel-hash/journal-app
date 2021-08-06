@@ -14,11 +14,11 @@ RSpec.describe "EditCategories", type: :system, js: true do
   before do
     driven_by :selenium, using: :chrome
     login(user)
+    visit edit_user_category_path(user, category)
   end
 
   context 'with valid inputs' do
     it 'displays and updates category details' do
-      visit edit_user_category_path(user, category)
       expect do
         # Form should be prefilled
         expect(find_field('Name').value).to eq 'sports'
@@ -39,7 +39,6 @@ RSpec.describe "EditCategories", type: :system, js: true do
   end
   context ' with invalid inputs' do
     it 'displays error message and renders edit view' do
-      visit edit_user_category_path(user, category)
       expect do
         # Fill in form
         within 'form' do
