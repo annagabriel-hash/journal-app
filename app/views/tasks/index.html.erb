@@ -1,7 +1,7 @@
 <section class='container-fluid p-5'>
 <div class='d-flex'>
   <h1>Tasks</h1>
-  <%= link_to 'New Task', new_task_path, class: 'align-self-center btn btn-primary ms-5 px-5 py-2 rounded-pill shadow' %>
+  <%= link_to 'New Task', new_user_task_path, class: 'align-self-center btn btn-primary ms-5 px-5 py-2 rounded-pill shadow' %>
 </div>
   <table class='table table-hover mt-4' id='tasks-list'>
     <thead>
@@ -18,9 +18,9 @@
         <td><%= task.todo %></td>
         <td><%= task.due %></td>
         <td><%= task.notes %></td>
-        <td><%= link_to 'Show', task, class: 'btn btn-primary btn-sm'%></td>
-        <td><%= link_to 'Edit', edit_task_path(task), class: 'btn btn-primary btn-sm' %></td>
-        <td><%= link_to 'Delete', task, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Show', [@user, task], class: 'btn btn-primary btn-sm'%></td>
+        <td><%= link_to 'Edit', edit_user_task_path(@user, task), class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Delete', [@user, task], method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-primary btn-sm' %></td>
       </tr>
       <% end %>
     </tbody>

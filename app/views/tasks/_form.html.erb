@@ -1,4 +1,4 @@
-<%= form_with model: @task do |form| %>
+<%= form_with model: [@user, @task] do |form| %>
   <div class='mb-3'>
     <%= form.label :todo, class: 'form-label' %>  
     <%= form.text_field :todo, class: 'form-control' %>
