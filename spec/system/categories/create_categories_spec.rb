@@ -23,7 +23,6 @@ RSpec.describe "CreateCategories", type: :system, js: true do
         within 'form' do
           fill_in 'Name', with: 'Sports'
           click_on 'Create Category'
-          sleep(2)
         end
         # Page should show success message
         expect(page).to have_content('Category was created successfully')
