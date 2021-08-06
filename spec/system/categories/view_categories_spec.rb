@@ -4,6 +4,13 @@ RSpec.describe "ViewCategories", type: :system, js: true do
   let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
   let!(:category) { Category.create(name: 'Travel', user: user) }
 
+  def login(user)
+    visit root_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_on 'Log In'
+  end
+  
   describe 'index view' do
     it 'display all categories' do
       visit categories_path
