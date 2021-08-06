@@ -9,7 +9,7 @@ RSpec.describe "CreatingNewUsers", type: :system do
       visit root_path
       click_on 'Sign up'
       expect(page).to have_current_path(signup_path)
-      expect(page).to have_content('Sign up')
+      expect(page).to have_content('Sign Up')
     end
   end
   context 'with valid inputs' do
