@@ -14,10 +14,10 @@ RSpec.describe "CreateTasks", type: :system do
   before do
     driven_by(:rack_test)
     login(user)
+    visit new_user_task_path(user)
   end
 
   it 'saves and display task' do
-    visit '/tasks/new'
     fill_in 'Todo', with: 'sample task'
     fill_in 'Due', with: date.strftime("%FT%R")
     fill_in 'Notes', with: 'sample notes'
@@ -31,7 +31,5 @@ RSpec.describe "CreateTasks", type: :system do
     expect(task.todo).to eq('sample task')
     expect(task.due).to eq(date)
     expect(task.notes).to eq('sample notes')
-
-
   end
 end
