@@ -1,22 +1,29 @@
 require 'rails_helper'
-require './spec/support/helpers/authentication'
-RSpec.configure do |c|
-  c.include Helpers::Authentication
-end
 
 RSpec.describe "CreateCategories", type: :system, js: true do
-  before do
-    @user = User.create(username: 'johndoe', firstname: 'John', lastname: 'Doe', password: 'password', password_confirmation: 'password')
-    sign_in_as(@user)
+  let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  
+  def login(user)
+    visit root_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_on 'Log In'
   end
+
+  before do
+    driven_by :selenium, using: :chrome
+  end
+
   context 'valid inputs' do
     it 'saves and displays new category' do
+      login(user)
       visit new_category_path
       # Fill in form
       expect do
         within 'form' do
           fill_in 'Name', with: 'Sports'
           click_on 'Create Category'
+          sleep(2)
         end
         # Page should show success message
         expect(page).to have_content('Category was created successfully')
@@ -30,6 +37,7 @@ RSpec.describe "CreateCategories", type: :system, js: true do
   end
   context 'invalid inputs' do
     it 'renders new view and displays error' do
+      login(user)
       visit new_category_path
       # Fill in form
       expect do
