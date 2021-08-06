@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     end
 
     def create
-        @task = @user.tasks.build(category_params)
+        @task = @user.tasks.build(task_params)
         if @task.save
             redirect_to [@user, @task], notice: 'Task was created successfully'
         else
