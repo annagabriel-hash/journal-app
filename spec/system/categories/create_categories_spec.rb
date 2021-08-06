@@ -12,11 +12,11 @@ RSpec.describe "CreateCategories", type: :system, js: true do
 
   before do
     driven_by :selenium, using: :chrome
+    login(user)
   end
 
   context 'valid inputs' do
     it 'saves and displays new category' do
-      login(user)
       visit new_category_path
       # Fill in form
       expect do
@@ -37,7 +37,6 @@ RSpec.describe "CreateCategories", type: :system, js: true do
   end
   context 'invalid inputs' do
     it 'renders new view and displays error' do
-      login(user)
       visit new_category_path
       # Fill in form
       expect do
