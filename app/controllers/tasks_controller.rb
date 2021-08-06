@@ -35,7 +35,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task.destroy
-        redirect_to tasks_path, notice: 'Task was deleted successfully'
+        redirect_to user_tasks_path, notice: 'Task was deleted successfully'
       end
 
     private
