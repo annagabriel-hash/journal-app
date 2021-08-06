@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe "EditCategories", type: :system, js: true do
   let(:category) { Category.create(name: 'Sports') }
 
+  before do
+    driven_by :selenium, using: :chrome
+  end
+  
   context 'with valid inputs' do
     it 'displays and updates category details' do
       visit edit_category_path(category)
