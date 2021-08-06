@@ -36,7 +36,7 @@ RSpec.describe 'CategoriesController', type: :request do
   describe "GET /edit" do
     it 'returns edit page' do
       category.save
-      get edit_user_category_path(category)
+      get edit_user_category_path(user, category)
       expect(response).to render_template(:edit)
       expect(response).to have_http_status(:success)
     end
