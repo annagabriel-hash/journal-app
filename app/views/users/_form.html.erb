@@ -1,14 +1,14 @@
 <%= render 'shared/errors', obj: @user %>
 <%= form_with model: @user do |f| %>
   <%= f.label :firstname, 'First Name' %>
-  <%= f.text_field :firstname %>
+  <%= f.text_field :firstname, required: true %>
   <%= f.label :lastname, 'Last Name' %>
   <%= f.text_field :lastname %>
   <%= f.label :username, 'Username' %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username, required: true %>
   <%= f.label :password, 'Password' %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, required: true %>
   <%= f.label :password_confirmation, 'Confirm Password' %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation, required: true %>
   <%= f.submit 'Create Account' %>
 <% end %>
