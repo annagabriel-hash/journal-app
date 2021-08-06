@@ -21,7 +21,7 @@ RSpec.describe 'CategoriesController', type: :request do
   describe "GET /show" do
     it 'returns show page' do
       category.save
-      get user_category_path(category.id)
+      get user_category_path(user, category)
       expect(response).to render_template(:show)
       expect(response).to have_http_status(:success)
     end

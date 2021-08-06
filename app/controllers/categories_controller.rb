@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   # before_action :set_category, only: %i[show edit update destroy]
   before_action :get_user
+  before_action :set_category, only: :show
   before_action :require_login
 
   def index
