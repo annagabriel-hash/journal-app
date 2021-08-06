@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   def create
     @category = @user.categories.build(category_params)
     if @category.save
-      redirect_to user_category_path(@user, @category), notice: 'Category was created successfully'
+      redirect_to [@user, @category], notice: 'Category was created successfully'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to user_category_path(@user, @category), notice: 'Category was updated successfully'
+      redirect_to [@user, @category], notice: 'Category was updated successfully'
     else
       render :edit
     end

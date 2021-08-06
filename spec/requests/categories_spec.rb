@@ -45,7 +45,7 @@ RSpec.describe 'CategoriesController', type: :request do
     it 'creates new category' do
       expect do
         post user_categories_path(user), params: { category: { name: category.name, user: user} }
-        expect(response).to redirect_to(user_category_path(user, assigns(:category)))
+        expect(response).to redirect_to([user, assigns(:category)])
         follow_redirect!
         expect(response).to render_template(:show)
       end.to change(Category, :count).by(1)
@@ -64,7 +64,7 @@ RSpec.describe 'CategoriesController', type: :request do
         patch user_category_path(user, category), params: { category: { name: 'travel' } }
         # Assigns relates to the instance variables created within a controller action 
         # e.g., :category => @category
-        expect(response).to redirect_to(user_category_path(user, assigns(:category)))
+        expect(response).to redirect_to([user, assigns(:category)])
         follow_redirect!
         expect(response).to render_template(:show)
       end.to_not change(Category, :count)
