@@ -28,31 +28,28 @@ describe 'index view' do
   end
 
   it 'loads the edit view when edit button is clicked' do
-    visit tasks_path
     within 'tbody' do
       find_link('Edit').click
     end
-    expect(page).to have_current_path(edit_task_path(task))
+    expect(page).to have_current_path(edit_user_task_path(user, task))
     expect(find_field('Todo').value).to eq task.todo
     expect(find_field('Due').value).to eq task.due.strftime("%FT%T")
     expect(find_field('Notes').value).to eq task.notes
   end
 
   it 'loads the show view when the show button is clicked' do
-    visit tasks_path
     within 'tbody' do
       find_link('Show').click
     end
-    expect(page).to have_current_path(task_path(task))
+    expect(page).to have_current_path(user_task_path(user, task))
     expect(page).to have_content(task.todo)
     expect(page).to have_content(task.due)
     expect(page).to have_content(task.notes)
   end
 
   it 'destroys task when the delete button is clicked' do
-    visit tasks_path
     expect{ click_link('Delete') }.to change(Task, :count).by(-1)
-  expect(page).to have_current_path(tasks_path)
+  expect(page).to have_current_path(user_tasks_path)
   expect(page).to have_content('Task was deleted successfully')
 end
 
