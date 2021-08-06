@@ -2,11 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "EditCategories", type: :system, js: true do
   let(:category) { Category.create(name: 'Sports') }
+  let(:user) {User.create(username: 'janedoe', firstname: 'Jane', lastname: 'Doe', password: 'password', password_confirmation: 'password')}
+  
+  def login(user)
+    visit root_path
+    fill_in 'Username', with: user.username
+    fill_in 'Password', with: user.password
+    click_on 'Log In'
+  end
 
   before do
     driven_by :selenium, using: :chrome
   end
-  
+
   context 'with valid inputs' do
     it 'displays and updates category details' do
       visit edit_category_path(category)
