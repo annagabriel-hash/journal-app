@@ -13,7 +13,7 @@ RSpec.describe 'CategoriesController', type: :request do
   end
   describe "GET /index" do
     it 'returns index page' do
-      get categories_path
+      get user_categories_path(user)
       expect(response).to render_template(:index)
       expect(response).to have_http_status(:success)
     end
@@ -21,14 +21,14 @@ RSpec.describe 'CategoriesController', type: :request do
   describe "GET /show" do
     it 'returns show page' do
       category.save
-      get category_path(category.id)
+      get user_category_path(user, category)
       expect(response).to render_template(:show)
       expect(response).to have_http_status(:success)
     end
   end
   describe "GET /new" do
     it 'returns new page' do
-      get new_category_path
+      get new_user_category_path(user)
       expect(response).to render_template(:new)
       expect(response).to have_http_status(:success)
     end
@@ -36,7 +36,7 @@ RSpec.describe 'CategoriesController', type: :request do
   describe "GET /edit" do
     it 'returns edit page' do
       category.save
-      get edit_category_path(category)
+      get edit_user_category_path(user, category)
       expect(response).to render_template(:edit)
       expect(response).to have_http_status(:success)
     end
@@ -44,15 +44,15 @@ RSpec.describe 'CategoriesController', type: :request do
   describe "POST /create" do
     it 'creates new category' do
       expect do
-        post categories_path, params: { category: { name: category.name, user: user} }
-        expect(response).to redirect_to(assigns(:category))
+        post user_categories_path(user), params: { category: { name: category.name, user: user} }
+        expect(response).to redirect_to([user, assigns(:category)])
         follow_redirect!
         expect(response).to render_template(:show)
       end.to change(Category, :count).by(1)
     end
     it 'renders new for new category with invalid inputs' do
       expect do
-        post categories_path, params: { category: { name: ''} }
+        post user_categories_path(user), params: { category: { name: '', user: user} }
         expect(response).to render_template(:new)
       end.to_not change(Category, :count)
     end
@@ -61,10 +61,10 @@ RSpec.describe 'CategoriesController', type: :request do
     it 'updates existing category' do
       category.save
       expect do
-        patch category_path(category.id), params: { category: { name: 'travel' } }
+        patch user_category_path(user, category), params: { category: { name: 'travel' } }
         # Assigns relates to the instance variables created within a controller action 
         # e.g., :category => @category
-        expect(response).to redirect_to(assigns(:category))
+        expect(response).to redirect_to([user, assigns(:category)])
         follow_redirect!
         expect(response).to render_template(:show)
       end.to_not change(Category, :count)
@@ -74,7 +74,7 @@ RSpec.describe 'CategoriesController', type: :request do
     it 'renders new for invalid inputs' do
       category.save
       expect do
-        patch category_path(category), params: { category: { name: ' ', user: user } }
+        patch user_category_path(user, category), params: { category: { name: ' ', user: user } }
         expect(response).to render_template(:edit)
       end.to_not change(Category, :count)
       # No changes to the data
@@ -84,8 +84,8 @@ RSpec.describe 'CategoriesController', type: :request do
     it 'destroy existing category' do
       category.save
       expect do
-        delete category_path(category.id)
-        expect(response).to redirect_to(categories_path)
+        delete user_category_path(user, category.id)
+        expect(response).to redirect_to(user_categories_path)
       end.to change(Category, :count).by(-1)
     end
   end

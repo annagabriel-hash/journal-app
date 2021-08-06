@@ -1,5 +1,5 @@
 <%= render 'shared/errors', obj: @category %>
-<%= form_with model: @category, local: true do |form| %>
+<%= form_with model: [@user, @category], local: true do |form| %>
   <div class='mb-3'>
     <%= form.label :name, class: 'form-label' %>  
     <%= form.text_field :name, class: 'form-control', placeholder: 'Enter category name' %>
