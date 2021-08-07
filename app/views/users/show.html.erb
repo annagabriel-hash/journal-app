@@ -1,1 +1,18 @@
 <h1>Welcome <%= @user.firstname %>!</h1>
+<section class='p-2'>
+  <div class="card">
+    <h5 class="card-header">Due for today</h5>
+    <div class="card-body">
+      <ul class="list-group list-group-flush card-text">
+        <% if @user_tasks_today.any? %>
+          <% @user_tasks_today.each do |task| %>
+            <li class='list-group-item'><%= task.todo %></li>
+          <% end %>
+        <% else %>
+          <li class='list-group-item'>No due tasks for today.</li>
+        <% end %>        
+      </ul>
+      <%= link_to 'Create new task', new_user_task_path(@user), class: 'btn btn-primary mt-3 px-5' %> 
+    </div>
+  </div>
+</section>

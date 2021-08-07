@@ -14,7 +14,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_tasks_today = @user.tasks.where(due: Date.today.beginning_of_day..Date.today.end_of_day)
   end
+  
   private
   
   def user_params
