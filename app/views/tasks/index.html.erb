@@ -16,7 +16,7 @@
       <% @tasks.each do |task| %>
       <tr>
         <td><%= task.todo %></td>
-        <td><%= task.due %></td>
+        <td><time><%= task.due.strftime('%b %e, %Y %I:%M %P') %></time></td>
         <td><%= task.notes %></td>
         <td><%= link_to 'Show', [@user, task], class: 'btn btn-primary btn-sm'%></td>
         <td><%= link_to 'Edit', edit_user_task_path(@user, task), class: 'btn btn-primary btn-sm' %></td>
