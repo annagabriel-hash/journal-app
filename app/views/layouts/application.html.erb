@@ -13,6 +13,11 @@
 
   <body>
     <%= render 'layouts/messages' %>
+    <div class='d-flex'>
+    <% if logged_in? %>
+      <%= render 'layouts/navigation' %>
+    <% end %>
     <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,5 +1,6 @@
-<h1>Welcome <%= @user.firstname %>!</h1>
-<section class='p-2'>
+<section class='p-5 w-100'>
+<h3 class='text-muted'>Welcome <%= @user.firstname %>!</h3>
+<h1>You have <%= @user.tasks.count %> tasks for today</h1>
   <div class="card">
     <h5 class="card-header">Due for today</h5>
     <div class="card-body">
